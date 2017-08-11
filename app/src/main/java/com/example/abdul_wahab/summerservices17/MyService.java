@@ -3,8 +3,16 @@ package com.example.abdul_wahab.summerservices17;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
+import android.widget.Toast;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class MyService extends Service {
+    private static final String TAG = "MTAG";
+
     public MyService() {
     }
 
@@ -20,6 +28,8 @@ public class MyService extends Service {
             }
         });
 
+        //publish event
+        EventBus.getDefault().post(new HelloWorldEvent("Hello EventBus!"));
 
 
 
@@ -33,6 +43,8 @@ public class MyService extends Service {
 
         return super.onStartCommand(intent, flags, startId);
     }
+
+
 
     // Unbound Service
     //StartService
